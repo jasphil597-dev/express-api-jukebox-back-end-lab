@@ -1,15 +1,24 @@
 import mongoose from 'mongoose';
 
-const jukeboxSchema = mongoose.Schema({
-	title: {
-		type: String,
-		required: true,
+const jukeboxSchema = new mongoose.Schema(
+	{
+		title: {
+			type: String,
+			required: true,
+		},
+		artist: {
+			type: String,
+			required: true,
+		},
+		genre: {
+			type: String,
+		},
+		releaseYear: {
+			type: Number,
+		},
 	},
-	artist: {
-		type: String,
-		required: true,
-	},
-});
+	{ collection: 'jukebox' } // Correct placement
+);
 
 const Jukebox = mongoose.model('Jukebox', jukeboxSchema);
 

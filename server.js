@@ -4,7 +4,7 @@ dotenv.config();
 import express from 'express';
 import mongoose from 'mongoose';
 import logger from 'morgan';
-
+import cors from 'cors';
 import jukeboxRouter from './controllers/jukebox.js';
 
 const app = express();
@@ -16,6 +16,7 @@ mongoose.connection.on('connected', () => {
 });
 
 app.use(express.json());
+app.use(cors());
 app.use(logger('dev'));
 app.use('/jukebox', jukeboxRouter);
 
