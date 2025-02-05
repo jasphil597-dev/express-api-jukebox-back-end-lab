@@ -1,9 +1,13 @@
-const dotenv = require('dotenv');
+import dotenv from 'dotenv';
 dotenv.config();
-const express = require('express');
+
+import express from 'express';
+import mongoose from 'mongoose';
+import logger from 'morgan';
+
+import jukeboxRouter from './controllers/jukebox.js';
+
 const app = express();
-const mongoose = require('mongoose');
-const logger = require('morgan');
 
 mongoose.connect(process.env.MONGODB_URI);
 
@@ -13,6 +17,12 @@ mongoose.connection.on('connected', () => {
 
 app.use(express.json());
 app.use(logger('dev'));
+app.use('/jukebox', jukeboxRouter);
+
+app.use((err, req, res, next) => {
+	console.error(err.stack);
+	res.status(500).json({ error: 'Internal Server Error' });
+});
 
 //Routes go here
 

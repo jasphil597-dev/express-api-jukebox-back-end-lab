@@ -1,5 +1,4 @@
-const mongoose = require('mongoose');
-const Jukebox = mongoose.model('Jukebox', jukeboxSchema);
+import mongoose from 'mongoose';
 
 const jukeboxSchema = mongoose.Schema({
 	title: {
@@ -12,5 +11,6 @@ const jukeboxSchema = mongoose.Schema({
 	},
 });
 
+const Jukebox = mongoose.model('Jukebox', jukeboxSchema);
+
 export default Jukebox;
-// module.exports = Jukebox;
